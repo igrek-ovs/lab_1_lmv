@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="907.0" prefWidth="1268.0" style="-fx-background-color: 0000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.Controller">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <Label alignment="CENTER" layoutX="134.0" layoutY="52.0" prefHeight="110.0" prefWidth="1023.0" text="Enter in app as:">
+         <font>
+            <Font name="Arial" size="96.0" />
+         </font>
+      </Label>
+      <Button fx:id="adminAuthorizationButton" layoutX="180.0" layoutY="304.0" mnemonicParsing="false" onAction="#onadminAuthorizationButtonClicked" prefHeight="183.0" prefWidth="233.0" text="Admin">
+         <font>
+            <Font size="48.0" />
+         </font></Button>
+      <Button fx:id="nurseAuthorizationButton" layoutX="822.0" layoutY="304.0" mnemonicParsing="false" onAction="#onnurseAuthorizationButton" prefHeight="183.0" prefWidth="233.0" text="Nurse">
+         <font>
+            <Font size="48.0" />
+         </font></Button>
+      <Button fx:id="doctorAuthorizationButton" layoutX="180.0" layoutY="542.0" mnemonicParsing="false" onAction="#ondoctorAuthorizationButtonClckd" prefHeight="183.0" prefWidth="233.0" text="Doctor">
+         <font>
+            <Font size="48.0" />
+         </font></Button>
+      <Button fx:id="patientAuthorizationButton" layoutX="822.0" layoutY="542.0" mnemonicParsing="false" onAction="#onpatientAuthorizationButton" prefHeight="183.0" prefWidth="233.0" text="Patient">
+         <font>
+            <Font size="48.0" />
+         </font></Button>
+      <Button fx:id="diagnosticButton" layoutX="474.0" layoutY="304.0" mnemonicParsing="false" onAction="#onDiagnosticButtonClicked" prefHeight="183.0" prefWidth="294.0" text="Diagnostic">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Button>
+      <Button fx:id="receptionButton" layoutX="473.0" layoutY="542.0" mnemonicParsing="false" onAction="#onReceptionButtonClicked" prefHeight="183.0" prefWidth="294.0" text="Reception">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

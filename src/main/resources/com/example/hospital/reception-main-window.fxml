@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="560.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerReceptionMainWindow">
+   <children>
+      <Label layoutX="141.0" layoutY="23.0" prefHeight="56.0" prefWidth="515.0" text="Уся важка робота приймальні зображена тут">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="addPatientButton" layoutX="17.0" layoutY="122.0" mnemonicParsing="false" onAction="#onAddPatientClicked" prefHeight="316.0" prefWidth="760.0" text="Додати пацієнта">
+         <font>
+            <Font size="70.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerAdminMainWindow">
+   <children>
+      <Button fx:id="addDoctorButton" layoutX="67.0" layoutY="141.0" mnemonicParsing="false" onAction="#onAddDoctorClicked" prefHeight="45.0" prefWidth="109.0" text="Add doctor" />
+      <Button fx:id="showAllDocButton" layoutX="589.0" layoutY="141.0" mnemonicParsing="false" onAction="#onShowAllDocClicked" prefHeight="45.0" prefWidth="109.0" text="Show all doctors" />
+      <Button fx:id="addNurseButton" layoutX="67.0" layoutY="238.0" mnemonicParsing="false" onAction="#onAddNurseClicked" prefHeight="45.0" prefWidth="109.0" text="Add nurse" />
+      <Button fx:id="showAllNursesButton" layoutX="589.0" layoutY="238.0" mnemonicParsing="false" onAction="#onShowAllNursesClicked" prefHeight="45.0" prefWidth="109.0" text="Show all nurses" />
+      <BarChart fx:id="barChart" layoutX="203.0" layoutY="315.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+
+   </children>
+</AnchorPane>
