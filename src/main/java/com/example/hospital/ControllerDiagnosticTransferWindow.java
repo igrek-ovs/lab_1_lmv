@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +47,8 @@ public class ControllerDiagnosticTransferWindow implements Initializable {
 
     @FXML
     private ComboBox<?> wardNumberBox;
+    @FXML
+    private Button helpButton;
 
     @FXML
     void onTransferButtonClicked(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -150,5 +154,34 @@ public class ControllerDiagnosticTransferWindow implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientNameField.setText(GlobalVariables.patientName);
         patientSurnameField.setText(GlobalVariables.patientSurname);
+
+        transferButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/vikno_priznachennya_likuvannya.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

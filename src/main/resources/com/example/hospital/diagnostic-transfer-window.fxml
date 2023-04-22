@@ -78,5 +78,10 @@
          <font>
             <Font size="18.0" />
          </font></Label>
+      <Button fx:id="helpButton" layoutX="643.0" mnemonicParsing="false" onAction="#onHelpButtonClicked" text="?">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -44,5 +44,10 @@
          <children>
             <Text fx:id="textFlow" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="515.13671875" />
          </children></TextFlow>
+      <Button fx:id="helpButton" layoutX="1048.0" layoutY="-5.0" mnemonicParsing="false" onAction="#onHelpButtonClicked" text="?">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -6,17 +6,23 @@ import com.example.hospital.stuff.Nurse;
 import com.example.hospital.stuff.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 
 import javax.mail.MessagingException;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
-public class ControllerPatientRegistration {
+public class ControllerPatientRegistration implements Initializable {
 
     @FXML
     private Button addPatientButton;
@@ -29,6 +35,8 @@ public class ControllerPatientRegistration {
 
     @FXML
     private TextField surnameField;
+    @FXML
+    private Button helpButton;
 
     @FXML
     void onAddPatientClicked(ActionEvent event) {
@@ -67,4 +75,36 @@ public class ControllerPatientRegistration {
         }
     }
 
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/vikno_re_stratsii_patsi_nta.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        addPatientButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_re_stratsii_patsi_nta.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }

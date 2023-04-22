@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.scene.chart.NumberAxis;
 
@@ -29,6 +30,8 @@ public class ControllerAdminMainWindow implements Initializable {
     private Button showAllNursesButton;
     @FXML
     private Button addNurseButton;
+    @FXML
+    private Button helpButton;
     @FXML
     private Label label1;
 
@@ -131,5 +134,78 @@ public class ControllerAdminMainWindow implements Initializable {
         barChart.getData().addAll(series1);
 
         yAxis.setTickUnit(1);
+
+
+
+        addDoctorButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        showAllDocButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_pereglyadu_vsikh_likariv.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        showAllNursesButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_pereglyadu_vsikh_medsester.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        addNurseButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_re_stratsii_medsestri.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+    }
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/golovne_vikno_administratora.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

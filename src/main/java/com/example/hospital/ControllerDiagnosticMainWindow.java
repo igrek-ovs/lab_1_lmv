@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,6 +46,8 @@ public class ControllerDiagnosticMainWindow implements Initializable {
 
     @FXML
     private Button updateButton;
+    @FXML
+    private Button helpButton;
 
     @FXML
     void onAddToMedCardClicked(ActionEvent event) {
@@ -120,5 +123,34 @@ public class ControllerDiagnosticMainWindow implements Initializable {
                 addToMedCardButton.setDisable(false);
             }
         });
+
+        transferButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/golovne_vikno_tsentru_diagnostiki.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

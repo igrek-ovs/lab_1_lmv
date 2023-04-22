@@ -82,6 +82,7 @@ package com.example.hospital;
 import com.example.hospital.stuff.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -90,10 +91,12 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -106,6 +109,8 @@ public class ControllerWindowWithGraphic implements Initializable {
     private LineChart<String, Integer> admissionsChart;
     private final CategoryAxis xAxis = new CategoryAxis();
     private final NumberAxis yAxis = new NumberAxis();
+    @FXML
+    private Button helpButton;
 
     private final ObservableList<XYChart.Series<String, Integer>> admissionsChartData = FXCollections.observableArrayList();
 
@@ -143,13 +148,53 @@ public class ControllerWindowWithGraphic implements Initializable {
         // Set bounds for the y-axis
         yAxis.setLowerBound(0);
         yAxis.setUpperBound(10);
+
+
+
+        loadDataButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        startDatePicker.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        endDatePicker.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @FXML
     void onLoadDataClicked() {
        /* LocalDate startDate = startDatePicker.getValue();
         LocalDate endDate = endDatePicker.getValue();*/
-
+        admissionsChart.getData().clear();
         if (startDate == null || endDate == null) {
             System.out.println("Netu niche");
             return;
@@ -206,4 +251,21 @@ public class ControllerWindowWithGraphic implements Initializable {
         data.add(series);
         return data;
     }*/
+
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

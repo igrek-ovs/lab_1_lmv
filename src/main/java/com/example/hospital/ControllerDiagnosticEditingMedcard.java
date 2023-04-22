@@ -6,18 +6,22 @@ import com.example.hospital.stuff.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class ControllerDiagnosticEditingMedcard {
+public class ControllerDiagnosticEditingMedcard implements Initializable {
 
     @FXML
     private Button addMedCardButton;
@@ -30,6 +34,8 @@ public class ControllerDiagnosticEditingMedcard {
 
     @FXML
     private TextArea text;
+    @FXML
+    private Button helpButton;
 
     @FXML
     void onAddButtonClicked(ActionEvent event) {
@@ -83,4 +89,35 @@ public class ControllerDiagnosticEditingMedcard {
         }
     }
 
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        addMedCardButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }

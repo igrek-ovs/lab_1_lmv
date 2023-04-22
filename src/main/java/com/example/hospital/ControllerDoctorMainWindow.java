@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -62,6 +63,8 @@ public class ControllerDoctorMainWindow implements Initializable {
     private TableColumn<Patient, String> wardCol;
     @FXML
     private TextField docSurnameField;
+    @FXML
+    private Button helpButton;
 
     @FXML
     void onAddToMedCardClicked(ActionEvent event) {
@@ -167,6 +170,33 @@ public class ControllerDoctorMainWindow implements Initializable {
 
 // связываем отфильтрованный список с таблицей
         tableView.setItems(filteredList);
+
+
+
+        dischargeButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/golovne_vikno_likarya.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        updateButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+                String sectionToOpen = "::/golovne_vikno_likarya.htm";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 
@@ -174,4 +204,22 @@ public class ControllerDoctorMainWindow implements Initializable {
     void onTextChanged(InputMethodEvent event) {
 
     }
+
+
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/golovne_vikno_likarya.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

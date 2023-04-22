@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 
 public class ControllerNurseRegistrationWindow {
 
@@ -37,6 +38,8 @@ public class ControllerNurseRegistrationWindow {
 
     @FXML
     private TextField surnameField;
+    @FXML
+    private Button helpButton;
 
     @FXML
     private ComboBox<?> wardBox;
@@ -89,5 +92,21 @@ public class ControllerNurseRegistrationWindow {
         }
     }
 
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/vikno_re_stratsii_medsestri.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

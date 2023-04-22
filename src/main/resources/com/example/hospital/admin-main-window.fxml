@@ -42,12 +42,17 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="label1" layoutX="813.0" layoutY="44.0" prefHeight="17.0" prefWidth="79.0" />
-      <Label fx:id="label2" layoutX="805.0" layoutY="76.0" prefHeight="17.0" prefWidth="87.0" />
-      <Label layoutX="784.0" layoutY="6.0" prefHeight="17.0" prefWidth="108.0" text="Авторизовані як:" />
+      <Label fx:id="label1" layoutX="784.0" layoutY="44.0" prefHeight="17.0" prefWidth="79.0" />
+      <Label fx:id="label2" layoutX="780.0" layoutY="76.0" prefHeight="17.0" prefWidth="87.0" />
+      <Label layoutX="755.0" layoutY="6.0" prefHeight="17.0" prefWidth="108.0" text="Авторизовані як:" />
       <Button fx:id="secondGraphic" layoutX="82.0" layoutY="405.0" mnemonicParsing="false" onAction="#onSecondGraphicClicked" prefHeight="98.0" prefWidth="177.0" text="Графік за датою">
          <font>
             <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="helpButton" layoutX="863.0" layoutY="-2.0" mnemonicParsing="false" onAction="#onHelpButtonClicked" text="?">
+         <font>
+            <Font size="24.0" />
          </font>
       </Button>
 

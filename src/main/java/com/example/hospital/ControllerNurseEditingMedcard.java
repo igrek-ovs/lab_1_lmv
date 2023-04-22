@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +37,8 @@ public class ControllerNurseEditingMedcard implements Initializable {
     private Label label2;
     @FXML
     private Button addAnalize;
+    @FXML
+    private Button helpButton;
 
 
     @FXML
@@ -108,5 +111,21 @@ public class ControllerNurseEditingMedcard implements Initializable {
                 imageView.setImage(image);
             }
         });
+    }
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

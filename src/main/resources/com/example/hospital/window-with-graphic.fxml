@@ -7,6 +7,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerWindowWithGraphic">
     <children>
@@ -23,6 +24,11 @@
         </yAxis>
       </LineChart>
       <Label layoutX="37.0" layoutY="43.0" prefHeight="17.0" prefWidth="201.0" text="Графік кількості поступів у лікарню" />
+      <Button fx:id="helpButton" layoutX="630.0" layoutY="-3.0" mnemonicParsing="false" onAction="#onHelpButtonClicked" prefHeight="51.0" prefWidth="48.0" text="?">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
 
     </children>
 

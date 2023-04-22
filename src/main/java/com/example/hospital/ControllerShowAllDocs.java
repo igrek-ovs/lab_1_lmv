@@ -6,10 +6,13 @@ package com.example.hospital;
         import javafx.collections.ObservableList;
         import javafx.event.ActionEvent;
         import javafx.fxml.FXML;
+        import javafx.scene.control.Button;
         import javafx.scene.control.ComboBox;
         import javafx.scene.control.TableColumn;
         import javafx.scene.control.TableView;
         import javafx.scene.control.cell.PropertyValueFactory;
+
+        import java.io.IOException;
 
 public class ControllerShowAllDocs {
 
@@ -33,6 +36,8 @@ public class ControllerShowAllDocs {
 
     @FXML
     private TableColumn<Doctor, String> postCol;
+    @FXML
+    private Button helpButton;
 
     @FXML
     void onDepartmentBoxClicked(ActionEvent event) {
@@ -46,6 +51,23 @@ public class ControllerShowAllDocs {
         postCol.setCellValueFactory(new PropertyValueFactory<Doctor, String>("post"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<Doctor, String>("phoneNumber"));
         tableView.setItems(doctors);
+    }
+
+
+    @FXML
+    private void onHelpButtonClicked(ActionEvent event) {
+        openChmHelp();
+    }
+
+    private void openChmHelp() {
+        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+        String sectionToOpen = "::/vikno_pereglyadu_vsikh_likariv.htm";
+
+        try {
+            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
