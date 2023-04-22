@@ -1,6 +1,7 @@
 package com.example.hospital;
 
 import com.example.hospital.animations.Shake;
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.stuff.Admin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,25 +30,9 @@ public class ControllerAdminAuth {
     private Button enterButton;
 
 
-    @FXML
-    private Button backButton;
 
-    @FXML
-    void onBackButtonPressed(ActionEvent event) {
-        Scene currentScene = backButton.getScene();
-        currentScene.getWindow().hide();
-        // загружаем новый fxml-файл
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-    }
+
+
 
     @FXML
     void onEnterButtonClicked(ActionEvent event) {
@@ -58,13 +43,17 @@ public class ControllerAdminAuth {
         if (!usernameText.equals("") && !userSurnameText.equals("") && !userPasswordText.equals("")) {
             loginUser(usernameText, userSurnameText, userPasswordText);
         } else {
-            System.out.println("Empty field!");
+            Shake userNameAnim = new Shake(usernameField);
+            Shake userSurnameAnim = new Shake(usersurnameField);
+            Shake userPasswordAnim = new Shake(passwordField);
+            userNameAnim.playAnimation();
+            userSurnameAnim.playAnimation();
+            userPasswordAnim.playAnimation();
         }
 
 
 
-        /*DatabaseHandler dbHandler = new DatabaseHandler();
-        dbHandler.signUpAdmin(usernameField.getText(), usersurnameField.getText(), passwordField.getText());*/
+
     }
 
     private void loginUser(String usernameText, String userSurnameText, String userPasswordText) {
@@ -85,6 +74,9 @@ public class ControllerAdminAuth {
             counter++;
         }
         if(counter>=1){
+            GlobalVariables.name = usernameField.getText();
+            GlobalVariables.surname = usersurnameField.getText();
+
             //Scene currentScene = adminAuthorizationButton.getScene();
             //currentScene.getWindow().hide();
             // загружаем новый fxml-файл
@@ -98,6 +90,7 @@ public class ControllerAdminAuth {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
+
         } else {
             Shake userNameAnim = new Shake(usernameField);
             Shake userSurnameAnim = new Shake(usersurnameField);

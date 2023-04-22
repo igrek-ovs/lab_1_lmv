@@ -2,6 +2,7 @@ package com.example.hospital;
 
 import com.example.hospital.animations.Shake;
 import com.example.hospital.db.ConstantsDoctor;
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.singleton.UserSingleton;
 import com.example.hospital.stuff.Admin;
 import com.example.hospital.stuff.Doctor;
@@ -78,6 +79,8 @@ public class ControllerDoctorAuth {
             counter++;
         }
         if(counter>=1){
+            GlobalVariables.name = usernameField.getText();
+            GlobalVariables.surname = usersurnameField.getText();
             //Scene currentScene = adminAuthorizationButton.getScene();
             //currentScene.getWindow().hide();
             // загружаем новый fxml-файл

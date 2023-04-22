@@ -1,6 +1,7 @@
 package com.example.hospital.stuff;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class Patient {
     private String name;
@@ -13,6 +14,15 @@ public class Patient {
     private java.sql.Date dischargeDate;
     private String docSurname;
     private String status;
+
+    public Patient(String name, String surname, String department, String ward, String isWardVip, Date admissionDate) {
+        this.name = name;
+        this.surname = surname;
+        this.department = department;
+        this.ward = ward;
+        this.isWardVip = isWardVip;
+        this.admissionDate = admissionDate;
+    }
 
     public Patient(String name, String surname, java.sql.Date admissionDate, String status) {
         this.name = name;
@@ -37,6 +47,8 @@ public class Patient {
     public Patient() {
 
     }
+
+
 
 
     public String getName() {

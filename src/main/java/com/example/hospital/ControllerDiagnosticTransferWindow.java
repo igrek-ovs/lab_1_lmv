@@ -1,19 +1,23 @@
 package com.example.hospital;
 
 import com.example.hospital.animations.Shake;
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.stuff.Doctor;
 import com.example.hospital.stuff.Patient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class ControllerDiagnosticTransferWindow {
+public class ControllerDiagnosticTransferWindow implements Initializable {
 
     @FXML
     private ComboBox<?> departmentBox;
@@ -78,7 +82,7 @@ public class ControllerDiagnosticTransferWindow {
             String wardNumber = wardNumberBox.getValue().toString();
             String status = statusBox.getValue().toString();
             DatabaseHandler dbHandler = new DatabaseHandler();
-            dbHandler.putPatientInWard(patName, patSurname, department, isWardVip, wardNumber, status, docSurname);
+            dbHandler.putPatientInWard(GlobalVariables.patientName, GlobalVariables.patientSurname, department, isWardVip, wardNumber, status, docSurname);
             Scene currentScene = transferButton.getScene();
             currentScene.getWindow().hide();
         }
@@ -140,5 +144,11 @@ public class ControllerDiagnosticTransferWindow {
             userSurnameAnim.playAnimation();
             return false;
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        patientNameField.setText(GlobalVariables.patientName);
+        patientSurnameField.setText(GlobalVariables.patientSurname);
     }
 }

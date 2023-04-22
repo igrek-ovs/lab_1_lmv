@@ -7,12 +7,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="677.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerDiagnosticTransferWindow">
+<AnchorPane prefHeight="524.0" prefWidth="686.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerDiagnosticTransferWindow">
    <children>
-      <Label layoutX="197.0" layoutY="177.0" text="Ім'я пацієнта" />
-      <Label layoutX="164.0" layoutY="229.0" text="Прізвище пацієнта" />
-      <ComboBox fx:id="departmentBox" layoutX="267.0" layoutY="281.0" prefHeight="25.0" prefWidth="150.0" promptText="відділ">
+      <Label layoutX="198.0" layoutY="64.0" text="Ім'я пацієнта">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="149.0" layoutY="109.0" text="Прізвище пацієнта">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ComboBox fx:id="departmentBox" layoutX="337.0" layoutY="152.0" prefHeight="25.0" prefWidth="150.0" promptText="відділ">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="department1" />
@@ -22,7 +29,7 @@
          </items>
       </ComboBox>
 
-      <ComboBox fx:id="isWardVipBox" layoutX="268.0" layoutY="332.0" prefWidth="150.0" promptText="VIP палата">
+      <ComboBox fx:id="isWardVipBox" layoutX="337.0" layoutY="195.0" prefWidth="150.0" promptText="VIP палата">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="Yes" />
@@ -31,7 +38,7 @@
          </items>
       </ComboBox>
 
-      <ComboBox fx:id="wardNumberBox" layoutX="268.0" layoutY="375.0" prefWidth="150.0" promptText="номер палати">
+      <ComboBox fx:id="wardNumberBox" layoutX="337.0" layoutY="237.0" prefWidth="150.0" promptText="номер палати">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="ward1" />
@@ -43,7 +50,7 @@
             </FXCollections>
          </items>
       </ComboBox>
-      <ComboBox fx:id="statusBox" layoutX="268.0" layoutY="416.0" prefWidth="150.0" promptText="статус">
+      <ComboBox fx:id="statusBox" layoutX="337.0" layoutY="281.0" prefWidth="150.0" promptText="статус">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="діагностика" />
@@ -51,12 +58,25 @@
             </FXCollections>
          </items>
       </ComboBox>
-      <Label layoutX="198.0" layoutY="477.0" text="Ім'я доктора" />
-      <Label layoutX="165.0" layoutY="512.0" text="Прізвище доктора" />
-      <TextField fx:id="docSurnameField" layoutX="323.0" layoutY="508.0" prefHeight="25.0" prefWidth="232.0" />
-      <TextField fx:id="docNameField" layoutX="323.0" layoutY="473.0" prefHeight="25.0" prefWidth="232.0" />
-      <TextField fx:id="patientSurnameField" layoutX="337.0" layoutY="225.0" prefHeight="25.0" prefWidth="232.0" />
-      <TextField fx:id="patientNameField" layoutX="337.0" layoutY="173.0" prefHeight="25.0" prefWidth="232.0" />
-      <Button fx:id="transferButton" layoutX="288.0" layoutY="591.0" mnemonicParsing="false" onAction="#onTransferButtonClicked" prefHeight="64.0" prefWidth="158.0" text="Перемістити" />
+      <Label layoutX="192.0" layoutY="321.0" text="Ім'я доктора">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="142.0" layoutY="365.0" text="Прізвище доктора">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="docSurnameField" layoutX="337.0" layoutY="366.0" prefHeight="25.0" prefWidth="232.0" />
+      <TextField fx:id="docNameField" layoutX="337.0" layoutY="322.0" prefHeight="25.0" prefWidth="232.0" />
+      <TextField fx:id="patientSurnameField" layoutX="337.0" layoutY="110.0" prefHeight="25.0" prefWidth="232.0" />
+      <TextField fx:id="patientNameField" layoutX="337.0" layoutY="65.0" prefHeight="25.0" prefWidth="232.0" />
+      <Button fx:id="transferButton" layoutX="311.0" layoutY="411.0" mnemonicParsing="false" onAction="#onTransferButtonClicked" prefHeight="64.0" prefWidth="158.0" text="Перемістити">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Label layoutX="64.0" layoutY="14.0" prefHeight="27.0" prefWidth="256.0" text="Вікно призначення лікування">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>

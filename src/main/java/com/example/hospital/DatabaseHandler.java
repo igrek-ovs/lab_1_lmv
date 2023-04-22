@@ -7,8 +7,13 @@ import com.example.hospital.stuff.Nurse;
 import com.example.hospital.stuff.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
+import javafx.util.Pair;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHandler extends Configs {
     Connection dbConnection;
@@ -479,5 +484,53 @@ public class DatabaseHandler extends Configs {
         }
         return patients.size();
     }
+
+
+    /*public ObservableList<XYChart.Series<String, Integer>> getAdmissionsChartData(LocalDate startDate, LocalDate endDate) throws SQLException, ClassNotFoundException {
+        List<Pair<LocalDate, Integer>> admissionsChartData = new ArrayList<>();
+
+        Connection conn = getDbConnection();
+        String query = "SELECT admissionDate, COUNT(*) FROM patients WHERE admissionDate BETWEEN ? AND ? GROUP BY admissionDate";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setDate(1, Date.valueOf(startDate));
+        stmt.setDate(2, Date.valueOf(endDate));
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Date admissionDate = rs.getDate("admissionDate");
+            int count = rs.getInt(2);
+            admissionsChartData.add(new Pair<>(admissionDate.toLocalDate(), count));
+        }
+
+        return admissionsChartData;
+    }*/
+
+    public List<XYChart.Series<String, Integer>> getAdmissionsChartData(LocalDate startDate, LocalDate endDate) throws SQLException, ClassNotFoundException {
+        List<XYChart.Series<String, Integer>> data = new ArrayList<>();
+
+        String sql = "SELECT admissionDate, COUNT(*) FROM patients WHERE admissionDate BETWEEN ? AND ? GROUP BY admissionDate";
+
+        try (Connection connection = getDbConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setDate(1, Date.valueOf(startDate));
+            preparedStatement.setDate(2, Date.valueOf(endDate));
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String date = resultSet.getDate(1).toString();
+                    int count = resultSet.getInt(2);
+
+                    XYChart.Data<String, Integer> chartData = new XYChart.Data<>(date, count);
+                    XYChart.Series<String, Integer> series = new XYChart.Series<>();
+                    series.setName("Поступлений");
+                    series.getData().add(chartData);
+                    data.add(series);
+                }
+            }
+        }
+
+        return data;
+    }
+
 
 }

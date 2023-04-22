@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="845.0" prefWidth="1090.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerDoctorMainWindow">
+<AnchorPane prefHeight="697.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerDoctorMainWindow">
    <children>
-      <Label layoutX="406.0" layoutY="38.0" prefHeight="35.0" prefWidth="279.0" text="Головне вікно лікаря">
+      <Label layoutX="273.0" layoutY="14.0" prefHeight="35.0" prefWidth="279.0" text="Головне вікно лікаря">
          <font>
             <Font size="24.0" />
          </font>
@@ -21,22 +20,28 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="dischargeButton" layoutX="801.0" layoutY="140.0" mnemonicParsing="false" onAction="#onDischargeButtonClicked" prefHeight="99.0" prefWidth="225.0" text="Виписати пацієнта">
+      <Button fx:id="dischargeButton" layoutX="452.0" layoutY="140.0" mnemonicParsing="false" onAction="#onDischargeButtonClicked" prefHeight="99.0" prefWidth="334.0" text="Виписати пацієнта">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="updateButton" layoutX="498.0" layoutY="321.0" mnemonicParsing="false" onAction="#onUpdateButtonClicked" prefHeight="44.0" prefWidth="133.0" text="Оновити таблицю" />
-      <TableView fx:id="tableView" layoutX="48.0" layoutY="457.0" prefHeight="301.0" prefWidth="994.0">
+      <Button fx:id="updateButton" layoutX="354.0" layoutY="340.0" mnemonicParsing="false" onAction="#onUpdateButtonClicked" prefHeight="44.0" prefWidth="133.0" text="Оновити таблицю" />
+      <TableView fx:id="tableView" layoutX="139.0" layoutY="403.0" prefHeight="272.0" prefWidth="547.0">
         <columns>
-          <TableColumn fx:id="nameCol" prefWidth="75.0" text="name" />
-          <TableColumn fx:id="surnameCol" prefWidth="75.0" text="surname" />
-            <TableColumn fx:id="admissionDateCol" prefWidth="101.0" text="admission date" />
-            <TableColumn fx:id="wardCol" prefWidth="75.0" text="ward" />
-            <TableColumn fx:id="isWardVipCol" prefWidth="75.0" text="isWardVip" />
+          <TableColumn fx:id="nameCol" prefWidth="75.0" text="Ім'я" />
+          <TableColumn fx:id="surnameCol" prefWidth="75.0" text="фамілія" />
+            <TableColumn fx:id="admissionDateCol" prefWidth="101.0" text="дата вступу" />
+            <TableColumn fx:id="wardCol" prefWidth="75.0" text="палата" />
+            <TableColumn fx:id="isWardVipCol" prefWidth="75.0" text="VIP палата" />
+            <TableColumn fx:id="department" prefWidth="75.0" text="відділ" />
         </columns>
       </TableView>
-      <Label layoutX="84.0" layoutY="357.0" text="Введіть свою фамілію для пошуку" />
-      <TextField fx:id="docSurnameField" layoutX="65.0" layoutY="398.0" prefHeight="25.0" prefWidth="225.0" />
+      <Label layoutX="623.0" layoutY="321.0" text="Введіть фамілію лікара" />
+      <TextField fx:id="docSurnameField" layoutX="524.0" layoutY="349.0" prefHeight="25.0" prefWidth="225.0" />
+      <Label layoutX="720.0" layoutY="32.0" text="Авторизовані як:" />
+      <Label fx:id="label1" layoutX="720.0" layoutY="61.0" prefHeight="17.0" prefWidth="93.0" text="Label" />
+      <Label fx:id="label2" layoutX="720.0" layoutY="91.0" prefHeight="17.0" prefWidth="93.0" text="Label" />
+      <TextField fx:id="searchTextField" layoutX="100.0" layoutY="349.0" onInputMethodTextChanged="#onTextChanged" prefHeight="25.0" prefWidth="225.0" />
+      <Label layoutX="139.0" layoutY="321.0" text="Введіть фамілію пацієнта" />
    </children>
 </AnchorPane>

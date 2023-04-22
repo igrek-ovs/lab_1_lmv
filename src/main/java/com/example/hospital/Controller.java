@@ -88,22 +88,7 @@ public class Controller {
         stage.showAndWait();
     }
 
-    @FXML
-    void onpatientAuthorizationButton(ActionEvent event) {
-        Scene currentScene = adminAuthorizationButton.getScene();
 
-        // загружаем новый fxml-файл
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("patient_authorization.fxml"));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-    }
 
     @FXML
     void onDiagnosticButtonClicked(ActionEvent event) {
