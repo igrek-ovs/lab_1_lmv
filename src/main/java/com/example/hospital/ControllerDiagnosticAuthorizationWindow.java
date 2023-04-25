@@ -3,20 +3,26 @@ package com.example.hospital;
 import com.example.hospital.animations.Shake;
 import com.example.hospital.db.Diagnostic;
 import com.example.hospital.db.Reception;
+import com.example.hospital.singleton.GlobalVariables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.annotation.Inherited;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ControllerDiagnosticAuthorizationWindow {
+public class ControllerDiagnosticAuthorizationWindow implements Initializable {
 
     @FXML
     private Button backButton;
@@ -81,4 +87,21 @@ public class ControllerDiagnosticAuthorizationWindow {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        enterButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/golovne_vikno.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+    }
 }

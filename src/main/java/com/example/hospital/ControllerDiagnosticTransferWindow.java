@@ -155,16 +155,20 @@ public class ControllerDiagnosticTransferWindow implements Initializable {
         patientNameField.setText(GlobalVariables.patientName);
         patientSurnameField.setText(GlobalVariables.patientSurname);
 
-        transferButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
 
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+        transferButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
@@ -175,11 +179,11 @@ public class ControllerDiagnosticTransferWindow implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
+
         String sectionToOpen = "::/vikno_priznachennya_likuvannya.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }

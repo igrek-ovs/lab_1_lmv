@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -43,22 +44,6 @@ public class ControllerNurseEditingMedcard implements Initializable {
 
     @FXML
     private TextArea textField;
-
-    /*@FXML
-    void onLoadClicked(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String name = nameField.getText();
-        String surname = surnameField.getText();
-        String text;
-
-        if (!checkPatient(name, surname)) {
-            nameField.clear();
-            surnameField.clear();
-        } else {
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            text = dbHandler.getPatientMedicalRecord(name, surname);
-            textField.setText(text);
-        }
-    }*/
 
     @FXML
     void onSaveClicked(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -111,6 +96,21 @@ public class ControllerNurseEditingMedcard implements Initializable {
                 imageView.setImage(image);
             }
         });
+
+        addAnalize.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @FXML
@@ -119,11 +119,10 @@ public class ControllerNurseEditingMedcard implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }

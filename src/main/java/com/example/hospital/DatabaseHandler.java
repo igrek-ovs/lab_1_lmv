@@ -486,24 +486,6 @@ public class DatabaseHandler extends Configs {
     }
 
 
-    /*public ObservableList<XYChart.Series<String, Integer>> getAdmissionsChartData(LocalDate startDate, LocalDate endDate) throws SQLException, ClassNotFoundException {
-        List<Pair<LocalDate, Integer>> admissionsChartData = new ArrayList<>();
-
-        Connection conn = getDbConnection();
-        String query = "SELECT admissionDate, COUNT(*) FROM patients WHERE admissionDate BETWEEN ? AND ? GROUP BY admissionDate";
-        PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setDate(1, Date.valueOf(startDate));
-        stmt.setDate(2, Date.valueOf(endDate));
-
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            Date admissionDate = rs.getDate("admissionDate");
-            int count = rs.getInt(2);
-            admissionsChartData.add(new Pair<>(admissionDate.toLocalDate(), count));
-        }
-
-        return admissionsChartData;
-    }*/
 
     public List<XYChart.Series<String, Integer>> getAdmissionsChartData(LocalDate startDate, LocalDate endDate) throws SQLException, ClassNotFoundException {
         List<XYChart.Series<String, Integer>> data = new ArrayList<>();

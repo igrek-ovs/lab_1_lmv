@@ -52,21 +52,6 @@ public class ControllerDoctorMedCardEditing implements Initializable {
     @FXML
     private TextArea textField;
 
-    /*@FXML
-    void onLoadClicked(ActionEvent event) throws SQLException, ClassNotFoundException {
-        String name = GlobalVariables.patientName;
-        String surname = GlobalVariables.patientSurname;
-        String text;
-
-        if (!checkPatient(name, surname)) {
-            nameField.clear();
-            surnameField.clear();
-        } else {
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            text = dbHandler.getPatientMedicalRecord(name, surname);
-            textField.setText(text);
-        }
-    }*/
 
     @FXML
     void onSaveClicked(ActionEvent event) throws SQLException, ClassNotFoundException {
@@ -150,11 +135,10 @@ public class ControllerDoctorMedCardEditing implements Initializable {
 
         addReceipt.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm#addreceit";
 
                 try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -163,11 +147,10 @@ public class ControllerDoctorMedCardEditing implements Initializable {
 
         addAnalize.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm#addimg";
 
                 try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -176,11 +159,32 @@ public class ControllerDoctorMedCardEditing implements Initializable {
 
         saveButton.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm#save";
 
                 try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        textField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm#mainfield";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        receitText.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm#receitfield";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -194,11 +198,10 @@ public class ControllerDoctorMedCardEditing implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }

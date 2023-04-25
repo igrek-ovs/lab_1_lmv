@@ -52,7 +52,7 @@ public class ControllerReceptionAuth {
         } else {
             Scene currentScene = enterButton.getScene();
 
-            // загружаем новый fxml-файл
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("reception-main-window.fxml"));
             try {
                 loader.load();

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerShowAllNursesWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerShowAllNursesWindow">
     <children>
-        <TableView fx:id="tableView" layoutX="305.0" layoutY="201.0" prefHeight="200.0" prefWidth="522.0">
+        <TableView fx:id="tableView" layoutX="211.0" layoutY="201.0" prefHeight="200.0" prefWidth="522.0">
             <columns>
                 <TableColumn fx:id="nameCol" prefWidth="75.0" text="ім'я" />
                 <TableColumn fx:id="surnameCol" prefWidth="75.0" text="прізвище" />
@@ -21,7 +21,7 @@
                 <TableColumn fx:id="postCol" prefWidth="96.0" text="пошта" />
             </columns>
         </TableView>
-        <ComboBox fx:id="departmentBox" layoutX="69.0" layoutY="201.0" onAction="#onDepartmentChoosed" promptText="відділ">
+        <ComboBox fx:id="departmentBox" layoutX="59.0" layoutY="201.0" onAction="#onDepartmentChoosed" promptText="відділ">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="department1" />
@@ -35,7 +35,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="helpButton" layoutX="827.0" mnemonicParsing="false" onAction="#onHelpButtonClicked" prefHeight="51.0" prefWidth="48.0" text="?">
+      <Button fx:id="helpButton" layoutX="733.0" mnemonicParsing="false" onAction="#onHelpButtonClicked" prefHeight="51.0" prefWidth="48.0" text="?">
          <font>
             <Font size="24.0" />
          </font>

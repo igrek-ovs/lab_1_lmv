@@ -137,60 +137,20 @@ public class ControllerAdminMainWindow implements Initializable {
 
 
 
-        addDoctorButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        helpButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/golovne_vikno_administratora.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
-
-
-        showAllDocButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_pereglyadu_vsikh_likariv.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        showAllNursesButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_pereglyadu_vsikh_medsester.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        addNurseButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_re_stratsii_medsestri.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
     }
 
     @FXML
@@ -203,7 +163,7 @@ public class ControllerAdminMainWindow implements Initializable {
         String sectionToOpen = "::/golovne_vikno_administratora.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }

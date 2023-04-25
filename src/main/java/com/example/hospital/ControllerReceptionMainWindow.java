@@ -1,5 +1,6 @@
 package com.example.hospital;
 
+import com.example.hospital.singleton.GlobalVariables;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,11 +45,10 @@ public class ControllerReceptionMainWindow implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/golovne_vikno_prijmalni.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,16 +56,19 @@ public class ControllerReceptionMainWindow implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addPatientButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/golovne_vikno_prijmalni.htm";
 
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        helpButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/golovne_vikno_prijmalni.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }

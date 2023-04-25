@@ -11,10 +11,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.ControllerWindowWithGraphic">
     <children>
-        <Label layoutX="14.0" layoutY="14.0" text="Выберите период:" />
+        <Label layoutX="14.0" layoutY="14.0" text="Виберіть дати:" />
         <DatePicker fx:id="startDatePicker" layoutX="125.0" layoutY="10.0" />
         <DatePicker fx:id="endDatePicker" layoutX="308.0" layoutY="10.0" />
-        <Button fx:id="loadDataButton" layoutX="495.0" layoutY="10.0" mnemonicParsing="false" onAction="#onLoadDataClicked" text="Загрузить данные" />
+        <Button fx:id="loadDataButton" layoutX="495.0" layoutY="10.0" mnemonicParsing="false" onAction="#onLoadDataClicked" text="Загрузити дані" />
       <LineChart fx:id="admissionsChart" layoutX="80.0" layoutY="60.0" prefHeight="304.0" prefWidth="482.0" title="Кількість поступів">
         <xAxis>
           <CategoryAxis side="BOTTOM" />

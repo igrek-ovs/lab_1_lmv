@@ -1,6 +1,7 @@
 package com.example.hospital;
 
 import com.example.hospital.animations.Shake;
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.stuff.Admin;
 import com.example.hospital.stuff.Patient;
 import javafx.event.ActionEvent;
@@ -95,11 +96,10 @@ public class ControllerDiagnosticEditingMedcard implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,16 +107,19 @@ public class ControllerDiagnosticEditingMedcard implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addMedCardButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
 
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        addMedCardButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/vikno_redaguvannya_meditsinskoi_kartochki_patsi_nta.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }

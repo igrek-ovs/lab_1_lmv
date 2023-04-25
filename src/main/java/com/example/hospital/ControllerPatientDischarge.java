@@ -56,7 +56,11 @@ public class ControllerPatientDischarge implements Initializable {
         DatabaseHandler dbHandler = new DatabaseHandler();
         /*dbHandler.dischargePatient(name, surname);*/
 
-        Printer printer = Printer.getDefaultPrinter();
+
+        /*Here we can print text*/
+
+
+        /*Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
         double scaleX = pageLayout.getPrintableWidth() / textArea.getBoundsInParent().getWidth();
         double scaleY = pageLayout.getPrintableHeight() / textArea.getBoundsInParent().getHeight();
@@ -71,7 +75,7 @@ public class ControllerPatientDischarge implements Initializable {
             }
         }
         textArea.scaleXProperty().set(1.0);
-        textArea.scaleYProperty().set(1.0);
+        textArea.scaleYProperty().set(1.0);*/
 
 
 
@@ -103,45 +107,24 @@ public class ControllerPatientDischarge implements Initializable {
 
 
 
-        dischargeButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
 
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+
+
+        helpButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
-
-        createReport.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        formButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
 
     }
 
@@ -151,11 +134,10 @@ public class ControllerPatientDischarge implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/vikno_vipiski_patsi_nta.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }

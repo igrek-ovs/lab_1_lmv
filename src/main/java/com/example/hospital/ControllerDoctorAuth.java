@@ -81,9 +81,6 @@ public class ControllerDoctorAuth {
         if(counter>=1){
             GlobalVariables.name = usernameField.getText();
             GlobalVariables.surname = usersurnameField.getText();
-            //Scene currentScene = adminAuthorizationButton.getScene();
-            //currentScene.getWindow().hide();
-            // загружаем новый fxml-файл
             FXMLLoader loader = new FXMLLoader(getClass().getResource("doctor-main-window.fxml"));
             try {
                 loader.load();

@@ -90,10 +90,6 @@ public class ControllerNurseMainWindow implements Initializable {
     @FXML
     void onUpdateButtonClicked(ActionEvent event) {
 
-
-
-
-
     }
 
 
@@ -110,7 +106,6 @@ public class ControllerNurseMainWindow implements Initializable {
     private void showMessage(String message) {
         messageLabel.setText(message);
 
-        // создаем анимацию для скрытия сообщения через 3 секунды
         KeyFrame keyFrame = new KeyFrame(Duration.seconds(3), e -> messageLabel.setText(""));
         Timeline timeline = new Timeline(keyFrame);
         timeline.play();
@@ -139,10 +134,8 @@ public class ControllerNurseMainWindow implements Initializable {
 
 
         tableView.setOnMouseClicked(event -> {
-            // получаем выделенный ряд
             Patient selectedPatient = tableView.getSelectionModel().getSelectedItem();
             if (selectedPatient != null) {
-                // сохраняем имя и фамилию пациента в переменные
                 GlobalVariables.patientName = selectedPatient.getName();
                 GlobalVariables.patientSurname = selectedPatient.getSurname();
                 GlobalVariables.docSurnameSelected = selectedPatient.getDocSurname();
@@ -155,20 +148,16 @@ public class ControllerNurseMainWindow implements Initializable {
 
         themeComboBox.getItems().addAll("Біла", "Жовта", "Зелена");
 
-        // Устанавливаем обработчик выбора элемента в ComboBox
         themeComboBox.setOnAction((event) -> {
             String theme = themeComboBox.getValue();
 
             if (theme.equals("Біла")) {
-                // Устанавливаем задний фон для окна
                 Scene scene = themeComboBox.getScene();
                 scene.getRoot().setStyle("-fx-background-color: #FFFFFF;");
             } else if (theme.equals("Жовта")) {
-                // Устанавливаем другой задний фон для окна
                 Scene scene = themeComboBox.getScene();
                 scene.getRoot().setStyle("-fx-background-color: #FFFF00;");
             } else if (theme.equals("Зелена")) {
-                // Устанавливаем третий задний фон для окна
                 Scene scene = themeComboBox.getScene();
                 scene.getRoot().setStyle("-fx-background-color: #00FF00;");
             }
@@ -176,30 +165,18 @@ public class ControllerNurseMainWindow implements Initializable {
 
 
 
-
-
-        sendLetterButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/golovne_vikno_medsestri.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        updateButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/golovne_vikno_medsestri.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        updateButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/golovne_vikno_medsestri.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
@@ -211,11 +188,10 @@ public class ControllerNurseMainWindow implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/golovne_vikno_medsestri.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }

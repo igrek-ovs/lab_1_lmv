@@ -2,6 +2,7 @@ package com.example.hospital;
 
 import com.example.hospital.animations.Shake;
 import com.example.hospital.password.PasswordGenerator;
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.stuff.Nurse;
 import com.example.hospital.stuff.Patient;
 import javafx.event.ActionEvent;
@@ -51,7 +52,6 @@ public class ControllerPatientRegistration implements Initializable {
         cal.set(Calendar.MONTH, Calendar.DECEMBER);
         cal.set(Calendar.DAY_OF_MONTH, 31);
 
-// получаем количество миллисекунд с начала эпохи Unix
         long millis = cal.getTimeInMillis();
 
         if (name.length() < 2) {
@@ -82,11 +82,10 @@ public class ControllerPatientRegistration implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/vikno_re_stratsii_patsi_nta.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,16 +93,19 @@ public class ControllerPatientRegistration implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addPatientButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_re_stratsii_patsi_nta.htm";
 
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        helpButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/vikno_re_stratsii_patsi_nta.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }

@@ -79,6 +79,7 @@ public class ControllerWindowWithGraphic implements Initializable {
 
 package com.example.hospital;
 
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.stuff.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -136,7 +137,6 @@ public class ControllerWindowWithGraphic implements Initializable {
         startDatePicker.setValue(startDate);
         endDatePicker.setValue(endDate);
 
-        // Set categories for the x-axis
         ObservableList<String> categories = FXCollections.observableArrayList();
         LocalDate currentDate = startDatePicker.getValue();
         while (!currentDate.isAfter(endDatePicker.getValue())) {
@@ -145,55 +145,30 @@ public class ControllerWindowWithGraphic implements Initializable {
         }
         xAxis.setCategories(categories);
 
-        // Set bounds for the y-axis
         yAxis.setLowerBound(0);
         yAxis.setUpperBound(10);
 
 
 
-        loadDataButton.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        startDatePicker.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        endDatePicker.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
-
-                try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        helpButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
 
     @FXML
     void onLoadDataClicked() {
-       /* LocalDate startDate = startDatePicker.getValue();
-        LocalDate endDate = endDatePicker.getValue();*/
+
         admissionsChart.getData().clear();
         if (startDate == null || endDate == null) {
             System.out.println("Netu niche");
@@ -211,17 +186,15 @@ public class ControllerWindowWithGraphic implements Initializable {
         ObservableList<XYChart.Series<String, Integer>> data = FXCollections.observableArrayList();
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
-        // Check that startDate and endDate are not null
         if (startDate == null || endDate == null) {
             return data;
         }
 
-        // Generate random data
         LocalDate currentDate = startDate;
         Random random = new Random();
         while (!currentDate.isAfter(endDate)) {
             String date = currentDate.toString();
-            int count = random.nextInt(10); // Random number of patients per day (up to 10)
+            int count = random.nextInt(10);
             series.getData().add(new XYChart.Data<>(date, count));
             currentDate = currentDate.plusDays(1);
         }
@@ -229,28 +202,6 @@ public class ControllerWindowWithGraphic implements Initializable {
         data.add(series);
         return data;
     }
-
-    /*private ObservableList<XYChart.Series<String, Integer>> getAdmissionsChartData(LocalDate startDate, LocalDate endDate) {
-        ObservableList<XYChart.Series<String, Integer>> data = FXCollections.observableArrayList();
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-
-        // Check that startDate and endDate are not null
-        if (startDate == null || endDate == null) {
-            return data;
-        }
-
-        // Generate data with a fixed admission count of 5 for each day
-        LocalDate currentDate = startDate;
-        while (!currentDate.isAfter(endDate)) {
-            String date = currentDate.toString();
-            int count = 5; // Fixed number of patients per day
-            series.getData().add(new XYChart.Data<>(date, count));
-            currentDate = currentDate.plusDays(1);
-        }
-
-        data.add(series);
-        return data;
-    }*/
 
 
     @FXML
@@ -259,11 +210,10 @@ public class ControllerWindowWithGraphic implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/grafik_kilkosti_postupiv_u_likarnyu.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }

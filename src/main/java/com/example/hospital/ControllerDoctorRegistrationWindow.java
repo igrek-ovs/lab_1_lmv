@@ -2,6 +2,7 @@ package com.example.hospital;
 
 import com.example.hospital.animations.Shake;
 import com.example.hospital.password.PasswordGenerator;
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.stuff.Doctor;
 import com.example.hospital.stuff.Nurse;
 import javafx.event.ActionEvent;
@@ -100,11 +101,10 @@ public class ControllerDoctorRegistrationWindow implements Initializable {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/vikno_re_stratsii_likarya.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -114,11 +114,80 @@ public class ControllerDoctorRegistrationWindow implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         addButton.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/vikno_re_stratsii_patsi_nta.htm";
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm#add";
 
                 try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        nameField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm#name";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        surnameField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm#surname";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        specializationBox.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm#spec";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        departmentBox.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm#depart";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        phoneField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm#phone";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        postField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/vikno_re_stratsii_likarya.htm#post";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

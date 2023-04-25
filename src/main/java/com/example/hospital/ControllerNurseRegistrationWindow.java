@@ -2,20 +2,25 @@ package com.example.hospital;
 
 import com.example.hospital.animations.Shake;
 import com.example.hospital.password.PasswordGenerator;
+import com.example.hospital.singleton.GlobalVariables;
 import com.example.hospital.stuff.Doctor;
 import com.example.hospital.stuff.Nurse;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ControllerNurseRegistrationWindow {
+public class ControllerNurseRegistrationWindow implements Initializable {
 
     @FXML
     private Button addButton;
@@ -99,14 +104,30 @@ public class ControllerNurseRegistrationWindow {
     }
 
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/vikno_re_stratsii_medsestri.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        helpButton.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.getCode() == KeyCode.F1) {
+                        String sectionToOpen = "::/vikno_re_stratsii_medsestri.htm";
+                        try {
+                            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+    }
 }

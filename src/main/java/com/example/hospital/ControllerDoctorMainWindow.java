@@ -155,31 +155,27 @@ public class ControllerDoctorMainWindow implements Initializable {
 
         FilteredList<Patient> filteredList = new FilteredList<>(tableView.getItems());
 
-// устанавливаем фильтр на основе текста в текстовом поле
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             String lowerCaseFilter = newValue.toLowerCase();
 
-            // устанавливаем предикат фильтрованного списка
             filteredList.setPredicate(patient -> {
                 if (newValue == null || newValue.isEmpty()) {
-                    return true; // если текстовое поле пустое, то показываем все записи
+                    return true;
                 }
-                return patient.getSurname().toLowerCase().startsWith(lowerCaseFilter); // показываем записи, в фамилии которых есть введенный текст
+                return patient.getSurname().toLowerCase().startsWith(lowerCaseFilter);
             });
         });
 
-// связываем отфильтрованный список с таблицей
         tableView.setItems(filteredList);
 
 
 
         dischargeButton.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/golovne_vikno_likarya.htm";
+                String sectionToOpen = "::/golovne_vikno_likarya.htm#discharge";
 
                 try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -187,16 +183,63 @@ public class ControllerDoctorMainWindow implements Initializable {
         });
         updateButton.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.F1) {
-                String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
-                String sectionToOpen = "::/golovne_vikno_likarya.htm";
+                String sectionToOpen = "::/golovne_vikno_likarya.htm#update";
 
                 try {
-                    Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+
+        tableView.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/golovne_vikno_likarya.htm#table";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        searchTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/golovne_vikno_likarya.htm#search";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        docSurnameField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/golovne_vikno_likarya.htm#docfield";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        addToMedCardButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.F1) {
+                String sectionToOpen = "::/golovne_vikno_likarya.htm#addinfo";
+
+                try {
+                    Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
     }
 
 
@@ -212,11 +255,10 @@ public class ControllerDoctorMainWindow implements Initializable {
         openChmHelp();
     }
     private void openChmHelp() {
-        String pathToChmFile = "C:/Users/Игорь/Downloads/Hospital.chm";
         String sectionToOpen = "::/golovne_vikno_likarya.htm";
 
         try {
-            Runtime.getRuntime().exec("hh.exe " + pathToChmFile + sectionToOpen);
+            Runtime.getRuntime().exec("hh.exe " + GlobalVariables.PATH_TO_CHM + sectionToOpen);
         } catch (IOException e) {
             e.printStackTrace();
         }
